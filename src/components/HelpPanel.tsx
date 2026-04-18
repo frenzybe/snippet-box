@@ -1,30 +1,34 @@
 import { useLocale } from '../context/LocaleContext';
+import { usePlatform } from '../context/PlatformContext';
+import { APP_NAME, APP_VERSION, TECH_STACK } from '../utils/constants';
+import styles from './HelpPanel.module.css';
 
 export function HelpPanel() {
   const { t } = useLocale();
+  const { resolvePlaceholders } = usePlatform();
 
   return (
-    <div className="help-panel">
-      <div className="help-hero">
-        <div className="help-hero-icon">📦</div>
+    <div className={styles.helpPanel}>
+      <div className={styles.helpHero}>
+        <div className={styles.helpHeroIcon}>📦</div>
         <div>
-          <div className="help-hero-title">Snippet Box</div>
-          <div className="help-hero-subtitle">{t.help.subtitle}</div>
+          <div className={styles.helpHeroTitle}>{APP_NAME}</div>
+          <div className={styles.helpHeroSubtitle}>{t.help.subtitle}</div>
         </div>
       </div>
 
-      <div className="help-sections">
+      <div className={styles.helpSections}>
         {t.help.docs.map((section) => (
-          <div key={section.title} className="help-section">
-            <div className="help-section-header">
-              <span className="help-section-icon">{section.icon}</span>
-              <span className="help-section-title">{section.title}</span>
+          <div key={section.title} className={styles.helpSection}>
+            <div className={styles.helpSectionHeader}>
+              <span className={styles.helpSectionIcon}>{section.icon}</span>
+              <span className={styles.helpSectionTitle}>{section.title}</span>
             </div>
-            <div className="help-items">
+            <div className={styles.helpItems}>
               {section.items.map((item) => (
-                <div key={item.label} className="help-item">
-                  <kbd className="help-kbd">{item.label}</kbd>
-                  <span className="help-item-desc">{item.desc}</span>
+                <div key={item.label} className={styles.helpItem}>
+                  <kbd className={styles.helpKbd}>{resolvePlaceholders(item.label)}</kbd>
+                  <span className={styles.helpItemDesc}>{resolvePlaceholders(item.desc)}</span>
                 </div>
               ))}
             </div>
@@ -32,10 +36,10 @@ export function HelpPanel() {
         ))}
       </div>
 
-      <div className="help-footer">
-        <span>Snippet Box v1.0.0</span>
+      <div className={styles.helpFooter}>
+        <span>{APP_NAME} v{APP_VERSION}</span>
         <span>·</span>
-        <span>Tauri 2 + React + CodeMirror</span>
+        <span>{TECH_STACK}</span>
       </div>
     </div>
   );

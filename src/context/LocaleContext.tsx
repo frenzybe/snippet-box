@@ -16,7 +16,7 @@ interface LocaleContextType {
 const LocaleContext = createContext<LocaleContextType>({
   locale: 'en',
   t: en,
-  setLocale: () => {},
+  setLocale: () => { },
 });
 
 export function LocaleProvider({
@@ -35,7 +35,6 @@ export function LocaleProvider({
     onLocaleChange?.(l);
   };
 
-  // Sync if initialLocale changes (e.g. loaded from store)
   useEffect(() => {
     setLocaleState(initialLocale);
   }, [initialLocale]);

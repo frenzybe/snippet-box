@@ -11,6 +11,18 @@
     "store:default",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
-    "global-shortcut:allow-is-registered"
+    "global-shortcut:allow-is-registered",
+    "os:default",
+    "fs:default",
+    "fs:allow-write-text-file",
+    "fs:allow-read-text-file",
+    "dialog:default",
+    "dialog:allow-save",
+    "dialog:allow-open",
+    "core:window:allow-hide",
+    "core:window:allow-show",
+    "sql:allow-load",
+    "sql:allow-execute",
+    "sql:allow-select"
   ]
 }

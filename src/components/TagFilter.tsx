@@ -1,31 +1,35 @@
 import { useLocale } from '../context/LocaleContext';
+import { useShallow } from 'zustand/react/shallow';
+import { useSnippetStore, selectAllTags } from '../store/useSnippetStore';
+import { Badge } from './ui/Badge';
+import styles from './TagFilter.module.css';
 
-interface TagFilterProps {
-  allTags: string[];
-  activeTag: string | null;
-  onSelectTag: (tag: string | null) => void;
-}
-
-export function TagFilter({ allTags, activeTag, onSelectTag }: TagFilterProps) {
+export function TagFilter() {
   const { t } = useLocale();
+  const allTags = useSnippetStore(useShallow(selectAllTags));
+  const activeTag = useSnippetStore(state => state.activeTag);
+  const setActiveTag = useSnippetStore(state => state.setActiveTag);
+
   if (allTags.length === 0) return null;
 
   return (
-    <div className="tag-filter-bar">
-      <span
-        className={`tag-filter-pill ${activeTag === null ? 'active' : ''}`}
-        onClick={() => onSelectTag(null)}
+    <div className={styles.bar}>
+      <Badge
+        className={styles.tagPill}
+        variant={activeTag === null ? 'accent' : 'outline'}
+        onClick={() => setActiveTag(null)}
       >
         {t.tags.all}
-      </span>
+      </Badge>
       {allTags.map((tag) => (
-        <span
+        <Badge
           key={tag}
-          className={`tag-filter-pill ${activeTag === tag ? 'active' : ''}`}
-          onClick={() => onSelectTag(activeTag === tag ? null : tag)}
+          className={styles.tagPill}
+          variant={activeTag === tag ? 'accent' : 'outline'}
+          onClick={() => setActiveTag(activeTag === tag ? null : tag)}
         >
           {tag}
-        </span>
+        </Badge>
       ))}
     </div>
   );

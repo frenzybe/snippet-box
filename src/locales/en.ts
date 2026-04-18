@@ -2,7 +2,9 @@ export interface Translations {
   search: {
     placeholder: string;
     noResults: string;
+    noResultsDesc: string;
     addHint: string;
+    addHintDesc: string;
     clear: string;
   };
   editor: {
@@ -16,6 +18,13 @@ export interface Translations {
     tabs: {
       snippet: string;
       help: string;
+      history: string;
+    };
+    history: {
+      noHistory: string;
+      noHistoryDesc: string;
+      confirmRestore: string;
+      confirmDelete: string;
     };
   };
   template: {
@@ -25,19 +34,19 @@ export interface Translations {
     filled: string;
     preview: string;
   };
-  form: {
-    newTitle: string;
+  snippetForm: {
+    title: string;
     editTitle: string;
+    titleLabel: string;
     titlePlaceholder: string;
+    tagsLabel: string;
     tagsPlaceholder: string;
-    langPlaceholder: string;
+    fileOptions: string;
+    filenameLabel: string;
+    languageLabel: string;
     codePlaceholder: string;
-    save: string;
-    saveChanges: string;
-    templateDetected: string;
     addFile: string;
     deleteFile: string;
-    filename: string;
   };
   templateModal: {
     title: string;
@@ -57,11 +66,31 @@ export interface Translations {
     themeDark: string;
     hotkey: string;
     hotkeyHint: string;
+    lineWrapping: string;
+    hideOnCopy: string;
+    iconStyle: string;
+    iconPacks: {
+      brand: string;
+      classic: string;
+      minimal: string;
+    };
     openSettings: string;
     sections: {
       appearance: string;
       interaction: string;
+      editor: string;
       backup: string;
+      danger: string;
+    };
+    fontSize: string;
+    showLineNumbers: string;
+    tabSize: string;
+    highlightActiveLine: string;
+    danger: {
+      resetTitle: string;
+      resetDesc: string;
+      resetBtn: string;
+      confirmMsg: string;
     };
     backup: {
       exportTitle: string;
@@ -99,6 +128,117 @@ export interface Translations {
     noFavoritesDesc: string;
     noSelected: string;
     noSelectedDesc: string;
+    noFolderSnippets: string;
+    noFolderSnippetsDesc: string;
+    noLanguageSnippets: string;
+    noLanguageSnippetsDesc: string;
+  };
+  sidebar: {
+    library: string;
+    allSnippets: string;
+    favorites: string;
+    recentlyUpdated: string;
+    languages: string;
+    snippets: string;
+    selected: string;
+    bulkDeleteTitle: string;
+    bulkDeleteConfirm: string;
+    deleteConfirm: string;
+  };
+  common: {
+    save: string;
+    cancel: string;
+    edit: string;
+    diffPreview: string;
+    on: string;
+    off: string;
+    loading: string;
+    restore: string;
+    settings: string;
+    delete: string;
+    clearAll: string;
+    confirmClearAll: string;
+    versionsCount: string;
+    showAll: string;
+    error: string;
+    duplicate: string;
+    version: string;
+  };
+  toasts: {
+    copied: string;
+    created: string;
+    updated: string;
+    deleted: string;
+    bulkDeleted: string;
+    favAdded: string;
+    favRemoved: string;
+    imported: string;
+    exported: string;
+    error: string;
+    fillTitle: string;
+    fillFilename: string;
+    fillCode: string;
+    noFavoritesYet: string;
+  };
+  export: {
+    title: string;
+    tabs: {
+      background: string;
+      editor: string;
+      config: string;
+    };
+    background: {
+      library: string;
+      myLibrary: string;
+      presets: string;
+      solid: string;
+      gradient: string;
+      start: string;
+      end: string;
+      angle: string;
+      addToLib: string;
+    };
+    editor: {
+      fontSize: string;
+      lineNumbers: string;
+      lineWrap: string;
+    };
+    config: {
+      outerSpace: string;
+      windowStyle: string;
+      cornerRadius: string;
+      shadowIntensity: string;
+      markdownView: string;
+      markdownCode: string;
+      markdownPreview: string;
+      previewZoom: string;
+    };
+    actions: {
+      copy: string;
+      copied: string;
+      download: string;
+      exporting: string;
+    };
+    toasts: {
+      copySuccess: string;
+      copyError: string;
+      saveSuccess: string;
+      saveError: string;
+    };
+  };
+  folders: {
+    title: string;
+    create: string;
+    rename: string;
+    delete: string;
+    deleteConfirm: string;
+    addToFolder: string;
+    removeFromFolder: string;
+    noFolders: string;
+    namePlaceholder: string;
+    color: string;
+    snippetAdded: string;
+    snippetRemoved: string;
   };
 }
 
@@ -106,7 +246,9 @@ export const en: Translations = {
   search: {
     placeholder: 'Search snippets… (↑↓ navigate, ⏎ copy)',
     noResults: 'No snippets found',
+    noResultsDesc: 'Try a different keyword or filter',
     addHint: 'Click + to add snippets',
+    addHintDesc: 'Start by creating your first code snippet',
     clear: 'Clear search',
   },
   editor: {
@@ -120,6 +262,13 @@ export const en: Translations = {
     tabs: {
       snippet: 'Snippet',
       help: 'Help',
+      history: 'History',
+    },
+    history: {
+      noHistory: 'No previous versions found.',
+      noHistoryDesc: 'History is created automatically when you update a snippet.',
+      confirmRestore: 'Are you sure you want to restore this version? Your current state will be saved to history.',
+      confirmDelete: 'Are you sure you want to delete this history version?',
     },
   },
   template: {
@@ -129,19 +278,19 @@ export const en: Translations = {
     filled: 'filled',
     preview: 'Preview',
   },
-  form: {
-    newTitle: 'New Snippet',
+  snippetForm: {
+    title: 'New Snippet',
     editTitle: 'Edit Snippet',
+    titleLabel: 'Snippet Title',
     titlePlaceholder: 'Title (e.g. React useCallback)',
+    tagsLabel: 'Tags',
     tagsPlaceholder: 'Tags (comma separated, e.g. react, hooks)',
-    langPlaceholder: 'Language',
+    fileOptions: 'File Options',
+    filenameLabel: 'Filename',
+    languageLabel: 'Language',
     codePlaceholder: 'Paste or type your snippet here...',
-    save: 'Save Snippet',
-    saveChanges: 'Save Changes',
-    templateDetected: '✨ Template variables detected:',
     addFile: 'Add File',
     deleteFile: 'Delete File',
-    filename: 'Filename',
   },
   templateModal: {
     title: 'Fill in variables',
@@ -160,12 +309,32 @@ export const en: Translations = {
     themeLight: 'Light',
     themeDark: 'Dark',
     hotkey: 'Global Shortcut',
-    hotkeyHint: 'Show/hide app from anywhere',
+    hotkeyHint: 'Show/hide app from anywhere ({modIcon}ShiftX)',
+    lineWrapping: 'Line Wrapping',
+    hideOnCopy: 'Hide after copy',
+    iconStyle: 'Icon Style',
+    iconPacks: {
+      brand: 'Brands',
+      classic: 'Classic',
+      minimal: 'Minimal',
+    },
     openSettings: 'Settings',
     sections: {
       appearance: 'Appearance',
       interaction: 'Interaction',
+      editor: 'Editor',
       backup: 'Backup & Restore',
+      danger: 'Danger Zone',
+    },
+    fontSize: 'Font Size',
+    showLineNumbers: 'Show Line Numbers',
+    tabSize: 'Tab Size',
+    highlightActiveLine: 'Highlight Active Line',
+    danger: {
+      resetTitle: 'Reset All Data',
+      resetDesc: 'Permanently deletes all snippets and resets settings to default. App will restart.',
+      resetBtn: 'Reset Everything',
+      confirmMsg: 'Are you sure you want to reset all data? This action cannot be undone.',
     },
     backup: {
       exportTitle: 'Export Snippets',
@@ -198,66 +367,53 @@ export const en: Translations = {
         title: 'Search & Navigation',
         items: [
           { label: '↑ / ↓', desc: 'Navigate between snippets in the list' },
-          { label: '⏎ Enter', desc: 'Copy the selected snippet to clipboard' },
-          { label: 'Type anything', desc: 'Instantly filter snippets by title or tags' },
-          { label: 'Click a tag pill', desc: 'Filter snippets by that tag (click again to clear)' },
+          { label: '⏎ Enter', desc: 'Quickly copy the selected snippet to clipboard' },
+          { label: 'Smart Search', desc: 'Instantly filter snippets by title or tags as you type' },
+          { label: 'Tag Pills', desc: 'Click a tag in the editor or sidebar to filter by it (click again to clear)' },
         ],
       },
       {
         icon: '✨',
         title: 'Template Variables',
         items: [
-          { label: '{{variable}}', desc: 'Wrap any word in double curly braces to make it a template variable' },
-          { label: 'Hover over variable', desc: 'A tooltip appears where you can type the value — the preview updates live' },
-          { label: 'Preview panel', desc: 'Shows the resolved code with all variables filled in. Drag the top edge to resize it, or click ∨ to collapse' },
-          { label: 'Copy button', desc: 'Copies the resolved code (with variables substituted) to clipboard' },
+          { label: '{{variable}}', desc: 'Wrap any word in double curly braces to create a dynamic input field' },
+          { label: 'Live Preview', desc: 'Hover over a variable in code to fill it. The preview updates in real-time' },
+          { label: 'Fill & Copy', desc: 'Fill all variables and hit Copy to get the resolved code with your values' },
         ],
       },
       {
         icon: '📋',
         title: 'Managing Snippets',
         items: [
-          { label: '+ button', desc: 'Opens the creation modal. Fill in title, tags, language and code' },
-          { label: '✏️ Edit (pencil)', desc: 'Re-opens the form pre-filled with the current snippet data' },
-          { label: '🗑 Delete (trash)', desc: 'Permanently deletes the snippet' },
-          { label: 'Tags field', desc: 'Comma-separated list, e.g. "react, hooks, ui". Used for filtering' },
-          { label: 'Language selector', desc: '14 languages with syntax highlighting: JS, TS, Python, Rust, Go, Bash, SQL, and more' },
+          { label: '+ Button', desc: 'Opens the creation modal. You can add multiple files to a single snippet' },
+          { label: '✏️ Edit', desc: 'Modify your snippets, change languages, or add/remove tags' },
+          { label: '🗑 Delete', desc: 'Permanently removes the snippet from your local database' },
         ],
       },
       {
         icon: '⌨️',
-        title: 'Keyboard Shortcuts',
+        title: 'Global Shortcuts',
         items: [
-          { label: 'Cmd + Shift + X', desc: 'Global hotkey — show / hide Snippet Box from anywhere on your Mac' },
-          { label: 'Esc', desc: 'Close the current modal or form' },
-          { label: '⌘ + W', desc: 'Hide the window (stays in tray)' },
-        ],
-      },
-      {
-        icon: '🖥',
-        title: 'System Tray',
-        items: [
-          { label: 'Tray icon (menu bar)', desc: 'Left-click to show/hide the window. Right-click for a context menu' },
-          { label: 'Close button (✕)', desc: 'Hides the window — the app keeps running in the tray' },
-          { label: 'Quit', desc: 'Right-click the tray icon → Quit Snippet Box to fully exit' },
-        ],
-      },
-      {
-        icon: '🎨',
-        title: 'Appearance',
-        items: [
-          { label: '☀️ / 🌑 Theme toggle', desc: 'Switch between Light and Dark mode. Your choice is remembered' },
-          { label: '🌐 Language toggle', desc: 'Switch between English and Russian interface. Saved automatically' },
-          { label: '⤢ Maximize', desc: 'Expand the window. On macOS, use the native green button for true fullscreen' },
+          { label: '{mod} + Shift + X', desc: 'Global activation — show or hide the app from anywhere on your {osName}' },
+          { label: 'Esc', desc: 'Quickly close any modal or the entire app window' },
+          { label: '{mod} + W', desc: 'Minimize the window to the System Tray background' },
         ],
       },
       {
         icon: '💾',
-        title: 'Data & Storage',
+        title: 'Data & Backup',
         items: [
-          { label: 'Auto-save', desc: 'Every change (add, edit, delete) is immediately saved to a local JSON store' },
-          { label: 'Storage location', desc: '~/Library/Application Support/com.snippetbox.app/snippets.json' },
-          { label: 'No cloud required', desc: 'Everything is stored locally on your Mac — works offline' },
+          { label: 'Export', desc: 'Download all your snippets as a portable JSON file for backup' },
+          { label: 'Import', desc: 'Restore your snippets from a previously exported JSON file' },
+          { label: 'Offline First', desc: 'All data is stored locally in {storagePath} — no cloud needed' },
+        ],
+      },
+      {
+        icon: '🖥',
+        title: 'System Integration',
+        items: [
+          { label: 'System Tray', desc: 'The app stays alive in your menu bar/system tray even when closed' },
+          { label: 'Auto-Update', desc: 'Snippet Box checks for updates and handles data sync automatically' },
         ],
       },
     ],
@@ -267,5 +423,116 @@ export const en: Translations = {
     noFavoritesDesc: 'Star your most used snippets to see them here.',
     noSelected: 'No Snippet Selected',
     noSelectedDesc: 'Select a snippet from the list or create a new one to start editing.',
+    noFolderSnippets: 'Folder is empty',
+    noFolderSnippetsDesc: 'Add snippets to this folder by clicking the folder icon on any snippet in the list.',
+    noLanguageSnippets: 'No {lang} snippets yet',
+    noLanguageSnippetsDesc: 'Create a new snippet and add a {lang} file to see it here.',
+  },
+  sidebar: {
+    library: 'Library',
+    allSnippets: 'All Snippets',
+    favorites: 'Favorites',
+    recentlyUpdated: 'Recently Updated',
+    languages: 'Languages',
+    snippets: 'Snippets ({count})',
+    selected: 'selected',
+    bulkDeleteTitle: 'Delete Snippets',
+    bulkDeleteConfirm: 'Are you sure you want to delete {count} snippets? This action cannot be undone.',
+    deleteConfirm: 'Are you sure you want to delete this snippet? This action cannot be undone.',
+  },
+  common: {
+    save: 'Save',
+    cancel: 'Cancel',
+    edit: 'Edit',
+    diffPreview: 'Diff Preview',
+    on: 'On',
+    off: 'Off',
+    loading: 'Loading...',
+    restore: 'Restore Version',
+    settings: 'Settings',
+    delete: 'Delete',
+    clearAll: 'Clear All History',
+    confirmClearAll: 'Are you sure you want to delete ALL history for this snippet?',
+    versionsCount: 'versions',
+    showAll: 'Show All Snippets',
+    error: 'Error',
+    duplicate: 'Duplicate',
+    version: 'Version',
+  },
+  toasts: {
+    copied: 'Snippet copied to clipboard',
+    created: 'New snippet created',
+    updated: 'Snippet updated successfully',
+    deleted: 'Snippet deleted',
+    bulkDeleted: '{count} snippets deleted',
+    favAdded: 'Added to favorites',
+    favRemoved: 'Removed from favorites',
+    imported: 'Snippets imported successfully',
+    exported: 'Snippets exported successfully',
+    error: 'Something went wrong',
+    fillTitle: 'Please enter a snippet title',
+    fillFilename: 'Please enter a filename',
+    fillCode: 'Please add snippet code',
+    noFavoritesYet: 'No favorites to show! Star some snippets first.',
+  },
+  export: {
+    title: 'Export Snippet',
+    tabs: {
+      background: 'Background',
+      editor: 'Editor',
+      config: 'Config',
+    },
+    background: {
+      library: 'Library',
+      myLibrary: 'My Library',
+      presets: 'Presets',
+      solid: 'Solid',
+      gradient: 'Gradient',
+      start: 'Start',
+      end: 'End',
+      angle: 'Angle',
+      addToLib: 'Add to Library',
+    },
+    editor: {
+      fontSize: 'Font Size',
+      lineNumbers: 'Line Numbers',
+      lineWrap: 'Line Wrap',
+    },
+    config: {
+      outerSpace: 'Outer Space',
+      windowStyle: 'Window Style',
+      cornerRadius: 'Corner Radius',
+      shadowIntensity: 'Shadow Intensity',
+      markdownView: 'Markdown View',
+      markdownCode: 'CODE',
+      markdownPreview: 'PREVIEW',
+      previewZoom: 'Preview Zoom',
+    },
+    actions: {
+      copy: 'Copy',
+      copied: 'Copied!',
+      download: 'Download',
+      exporting: 'Exporting...',
+    },
+    toasts: {
+      copySuccess: 'Image copied to clipboard!',
+      copyError: 'Failed to copy image',
+      saveSuccess: 'Image saved successfully!',
+      saveError: 'Failed to save image',
+    },
+  },
+  folders: {
+    title: 'Folders',
+    create: 'New Folder',
+    rename: 'Rename',
+    delete: 'Delete Folder',
+    deleteConfirm: 'Delete this folder? Snippets inside will not be deleted.',
+    addToFolder: 'Add to Folder',
+    removeFromFolder: 'Remove from Folder',
+    noFolders: 'No folders yet',
+    namePlaceholder: 'Folder name...',
+    color: 'Color',
+    snippetAdded: 'Snippet added to folder',
+    snippetRemoved: 'Snippet removed from folder',
   },
 };

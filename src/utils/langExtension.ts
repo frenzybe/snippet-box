@@ -12,10 +12,13 @@ import { markdown } from "@codemirror/lang-markdown";
 import { Extension } from "@codemirror/state";
 
 export function getLangExtension(lang: string): Extension[] {
-  switch (lang) {
+  const l = lang.toLowerCase();
+  switch (l) {
+    case 'js':
     case 'javascript':
     case 'text/javascript':
       return [javascript()];
+    case 'ts':
     case 'typescript':
       return [javascript({ typescript: true })];
     case 'jsx':
@@ -39,7 +42,19 @@ export function getLangExtension(lang: string): Extension[] {
     case 'json':
       return [json()];
     case 'markdown':
+    case 'yaml':
       return [markdown()];
+    case 'scss':
+      return [css()];
+    case 'xml':
+    case 'vue':
+    case 'svelte':
+      return [html()];
+    case 'bash':
+    case 'shell':
+    case 'dockerfile':
+      // Basic support for shell/docker via markdown code blocks or similar
+      return []; 
     default:
       return [];
   }

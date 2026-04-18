@@ -1,0 +1,19 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide for Firefox */
+  flex-shrink: 0;
+}
+
+.bar::-webkit-scrollbar {
+  display: none; /* Hide for Chrome/Safari */
+}
+
+.tagPill {
+  white-space: nowrap;
+}

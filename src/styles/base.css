@@ -1,0 +1,93 @@
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  user-select: none;
+  transition: background-color var(--t-duration) var(--t-ease), color var(--t-duration) var(--t-ease);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+  background-clip: padding-box;
+}
+
+/* CodeMirror Global Overrides */
+.cm-editor {
+  height: 100%;
+  flex: 1;
+  outline: none !important;
+  background-color: transparent !important;
+}
+
+.cm-scroller {
+  background-color: transparent !important;
+}
+
+.cm-scroller {
+  font-family: var(--font-mono) !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+.cm-content {
+  padding: 8px 0 !important;
+}
+
+.cm-gutters {
+  background-color: transparent !important;
+  border-right: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  opacity: 0.5;
+}
+
+.cm-lineNumbers .cm-gutterElement {
+  padding: 0 10px 0 4px !important;
+  min-width: 30px !important;
+}
+
+.cm-activeLine {
+  background-color: var(--accent-soft) !important;
+}
+
+.cm-activeLineGutter {
+  background-color: transparent !important;
+  color: var(--accent-color) !important;
+  opacity: 1;
+}
+
+code {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}

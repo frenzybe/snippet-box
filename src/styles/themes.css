@@ -1,0 +1,222 @@
+body.dark {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252526;
+  --bg-header: #333333;
+  --bg-hover: #2a2d2e;
+  --border-color: #3e3e42;
+  --text-primary: #cccccc;
+  --text-secondary: #858585;
+  --list-active: #37373d;
+  --bg-primary-glass: rgba(30, 30, 30, 0.85);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  --color-success: #34c759;
+  --color-error: #ff3b30;
+  --color-info: var(--accent-color);
+  --accent-color: #007aff;
+  --accent-hover: #005bb5;
+  --accent-soft: rgba(0, 122, 255, 0.1);
+  --accent-shadow: rgba(0, 122, 255, 0.3);
+  --accent-gradient: linear-gradient(135deg, #007aff 0%, #005bb5 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);
+  
+  --bg-vibrancy-primary: var(--bg-primary);
+  --bg-vibrancy-secondary: var(--bg-secondary);
+  --bg-vibrancy-header: var(--bg-header);
+
+  --syntax-keyword: #569cd6;
+  --syntax-string: #ce9178;
+  --syntax-comment: #6a9955;
+  --syntax-number: #b5cea8;
+  --syntax-bracket: #ffd700;
+  
+  --diff-added-bg: rgba(52, 199, 89, 0.15);
+  --diff-added-border: #34c759;
+  --diff-removed-bg: rgba(255, 59, 48, 0.15);
+  --diff-removed-border: #ff3b30;
+}
+
+body.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f3f3;
+  --bg-header: #f8f9fa;
+  --bg-hover: #e8e8e8;
+  --border-color: #dee2e6;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --list-active: #e9ecef;
+  --bg-primary-glass: rgba(255, 255, 255, 0.85);
+  --bg-overlay: rgba(0, 0, 0, 0.3);
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-info: var(--accent-color);
+  --accent-color: #007aff;
+  --accent-hover: #005bb5;
+  --accent-soft: rgba(0, 122, 255, 0.1);
+  --accent-shadow: rgba(0, 122, 255, 0.3);
+  --accent-gradient: linear-gradient(135deg, #007aff 0%, #005bb5 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);
+  
+  --bg-vibrancy-primary: var(--bg-primary);
+  --bg-vibrancy-secondary: var(--bg-secondary);
+  --bg-vibrancy-header: var(--bg-header);
+
+  --syntax-keyword: #0000ff;
+  --syntax-string: #a31515;
+  --syntax-comment: #008000;
+  --syntax-number: #098658;
+  --syntax-bracket: #af00db;
+
+  --diff-added-bg: rgba(40, 167, 69, 0.1);
+  --diff-added-border: #28a745;
+  --diff-removed-bg: rgba(220, 53, 69, 0.1);
+  --diff-removed-border: #dc3545;
+}
+
+body.dracula {
+  --bg-primary: #282a36;
+  --bg-secondary: #1e1f29;
+  --bg-header: #191a21;
+  --bg-hover: #44475a;
+  --border-color: #44475a;
+  --text-primary: #f8f8f2;
+  --text-secondary: #6272a4;
+  --list-active: #44475a;
+  --bg-primary-glass: rgba(40, 42, 54, 0.85);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  --accent-color: #bd93f9;
+  --accent-hover: #a179d9;
+  --color-success: #50fa7b;
+  --color-error: #ff5555;
+  --color-info: #8be9fd;
+  --accent-soft: rgba(189, 147, 249, 0.15);
+  --accent-shadow: rgba(189, 147, 249, 0.35);
+  --accent-gradient: linear-gradient(135deg, #bd93f9 0%, #a179d9 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #caabf7 0%, #bd93f9 100%);
+
+  --bg-vibrancy-primary: var(--bg-primary);
+  --bg-vibrancy-secondary: var(--bg-secondary);
+  --bg-vibrancy-header: var(--bg-header);
+
+  --syntax-keyword: #ff79c6;
+  --syntax-string: #f1fa8c;
+  --syntax-comment: #6272a4;
+  --syntax-number: #bd93f9;
+  --syntax-bracket: #f8f8f2;
+
+  --diff-added-bg: rgba(80, 250, 123, 0.15);
+  --diff-added-border: #50fa7b;
+  --diff-removed-bg: rgba(255, 85, 85, 0.15);
+  --diff-removed-border: #ff5555;
+}
+
+body.onedark {
+  --bg-primary: #282c34;
+  --bg-secondary: #21252b;
+  --bg-header: #181a1f;
+  --bg-hover: #2c313a;
+  --border-color: #3e4451;
+  --text-primary: #abb2bf;
+  --text-secondary: #5c6370;
+  --list-active: #3e4451;
+  --bg-primary-glass: rgba(40, 44, 52, 0.85);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  --accent-color: #61afef;
+  --accent-hover: #4fa3e3;
+  --color-success: #98c379;
+  --color-error: #e06c75;
+  --color-info: #56b6c2;
+  --accent-soft: rgba(97, 175, 239, 0.15);
+  --accent-shadow: rgba(97, 175, 239, 0.3);
+  --accent-gradient: linear-gradient(135deg, #61afef 0%, #4fa3e3 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #7fc1f2 0%, #61afef 100%);
+
+  --bg-vibrancy-primary: var(--bg-primary);
+  --bg-vibrancy-secondary: var(--bg-secondary);
+  --bg-vibrancy-header: var(--bg-header);
+
+  --syntax-keyword: #c678dd;
+  --syntax-string: #98c379;
+  --syntax-comment: #5c6370;
+  --syntax-number: #d19a66;
+  --syntax-bracket: #abb2bf;
+
+  --diff-added-bg: rgba(152, 195, 121, 0.15);
+  --diff-added-border: #98c379;
+  --diff-removed-bg: rgba(224, 108, 117, 0.15);
+  --diff-removed-border: #e06c75;
+}
+
+body.nord {
+  --bg-primary: #2e3440;
+  --bg-secondary: #242933;
+  --bg-header: #3b4252;
+  --bg-hover: #434c5e;
+  --border-color: #4c566a;
+  --text-primary: #d8dee9;
+  --text-secondary: #818ba4;
+  --list-active: #434c5e;
+  --bg-primary-glass: rgba(46, 52, 64, 0.85);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  --accent-color: #88c0d0;
+  --accent-hover: #81a1c1;
+  --color-success: #a3be8c;
+  --color-error: #bf616a;
+  --color-info: #5e81ac;
+  --accent-soft: rgba(136, 192, 208, 0.15);
+  --accent-shadow: rgba(136, 192, 208, 0.3);
+  --accent-gradient: linear-gradient(135deg, #88c0d0 0%, #81a1c1 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #99c9d8 0%, #88c0d0 100%);
+
+  --bg-vibrancy-primary: var(--bg-primary);
+  --bg-vibrancy-secondary: var(--bg-secondary);
+  --bg-vibrancy-header: var(--bg-header);
+
+  --syntax-keyword: #81a1c1;
+  --syntax-string: #a3be8c;
+  --syntax-comment: #616e88;
+  --syntax-number: #b48ead;
+  --syntax-bracket: #eceff4;
+
+  --diff-added-bg: rgba(163, 190, 140, 0.15);
+  --diff-added-border: #a3be8c;
+  --diff-removed-bg: rgba(191, 97, 106, 0.15);
+  --diff-removed-border: #bf616a;
+}
+
+body.windows, body.macos {
+  background-color: transparent !important;
+}
+
+body.windows .app-container,
+body.macos .app-container {
+  background-color: transparent !important;
+}
+
+body.windows.dark, 
+body.macos.dark,
+body.windows.dracula,
+body.macos.dracula,
+body.windows.onedark,
+body.macos.onedark,
+body.windows.nord,
+body.macos.nord {
+  --bg-vibrancy-primary: rgba(30, 30, 30, 0.7);
+  --bg-vibrancy-secondary: rgba(20, 20, 20, 0.4);
+  --bg-vibrancy-header: rgba(40, 40, 40, 0.6);
+}
+
+body.windows.dracula, body.macos.dracula {
+  --bg-vibrancy-primary: rgba(40, 42, 54, 0.7);
+  --bg-vibrancy-secondary: rgba(30, 31, 41, 0.4);
+}
+
+body.windows.nord, body.macos.nord {
+  --bg-vibrancy-primary: rgba(46, 52, 64, 0.75);
+  --bg-vibrancy-secondary: rgba(36, 41, 51, 0.45);
+}
+
+body.windows.light, body.macos.light {
+  --bg-vibrancy-primary: rgba(255, 255, 255, 0.8);
+  --bg-vibrancy-secondary: rgba(245, 245, 245, 0.6);
+  --bg-vibrancy-header: rgba(250, 250, 250, 0.8);
+}

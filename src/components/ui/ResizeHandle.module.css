@@ -1,0 +1,40 @@
+.handle {
+  width: 4px;
+  cursor: col-resize;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  transition: background 0.2s ease;
+  margin-left: -2px;
+  margin-right: -2px;
+  display: flex;
+  justify-content: center;
+}
+
+.handle:hover,
+.active {
+  background: var(--accent-soft);
+}
+
+.line {
+  width: 1px;
+  height: 100%;
+  background: var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.handle:hover .line,
+.active .line {
+  background: var(--accent-color);
+  width: 2px;
+}
+
+/* Increase hit area */
+.handle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -4px;
+  right: -4px;
+}

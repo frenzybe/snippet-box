@@ -6,8 +6,12 @@ use tauri::{
 use std::sync::Mutex;
 use std::str::FromStr;
 use tauri_plugin_global_shortcut::{GlobalShortcutExt, Shortcut, ShortcutState};
+use tauri_plugin_sql::{Migration, MigrationKind};
+#[cfg(target_os = "macos")]
+use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
+#[cfg(target_os = "windows")]
+use window_vibrancy::{apply_mica, apply_acrylic, apply_blur};
 
-/// Show window and restore the Dock icon
 fn show_window(app: &AppHandle) {
     if let Some(win) = app.get_webview_window("main") {
         #[cfg(target_os = "macos")]
@@ -17,7 +21,6 @@ fn show_window(app: &AppHandle) {
     }
 }
 
-/// Hide window and remove the Dock icon
 fn hide_window(app: &AppHandle) {
     if let Some(win) = app.get_webview_window("main") {
         let _ = win.hide();
@@ -44,12 +47,10 @@ fn update_shortcut(app: AppHandle, state: State<'_, AppShortcutState>, shortcut_
     {
         let mut current = state.0.lock().unwrap();
         
-        // Unregister previous if exists
         if let Some(old_shortcut) = *current {
             let _ = app.global_shortcut().unregister(old_shortcut);
         }
         
-        // Parse and register new
         if let Ok(new_shortcut) = Shortcut::from_str(&shortcut_str) {
             match app.global_shortcut().register(new_shortcut) {
                 Ok(_) => {
@@ -68,9 +69,83 @@ fn update_shortcut(app: AppHandle, state: State<'_, AppShortcutState>, shortcut_
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let migrations = vec![
+        Migration {
+            version: 1,
+            description: "initial_schema",
+            sql: "
+                CREATE TABLE snippets (
+                    id TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    description TEXT,
+                    is_favorite INTEGER DEFAULT 0,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                );
+                CREATE TABLE files (
+                    id TEXT PRIMARY KEY,
+                    snippet_id TEXT NOT NULL,
+                    filename TEXT NOT NULL,
+                    code TEXT NOT NULL,
+                    language TEXT NOT NULL,
+                    FOREIGN KEY (snippet_id) REFERENCES snippets(id) ON DELETE CASCADE
+                );
+                CREATE TABLE tags (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT UNIQUE NOT NULL
+                );
+                CREATE TABLE snippet_tags (
+                    snippet_id TEXT NOT NULL,
+                    tag_id INTEGER NOT NULL,
+                    PRIMARY KEY (snippet_id, tag_id),
+                    FOREIGN KEY (snippet_id) REFERENCES snippets(id) ON DELETE CASCADE,
+                    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+                );
+                CREATE VIRTUAL TABLE snippets_fts USING fts5(
+                    snippet_id UNINDEXED,
+                    title,
+                    description,
+                    content
+                );
+            ",
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 2,
+            description: "add_snippet_history",
+            sql: "
+                CREATE TABLE snippet_history (
+                    id TEXT PRIMARY KEY,
+                    snippet_id TEXT NOT NULL,
+                    data TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    FOREIGN KEY (snippet_id) REFERENCES snippets(id) ON DELETE CASCADE
+                );
+            ",
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 3,
+            description: "add_is_template_to_snippets",
+            sql: "ALTER TABLE snippets ADD COLUMN is_template INTEGER DEFAULT 0;",
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 4,
+            description: "add_history_index",
+            sql: "CREATE INDEX IF NOT EXISTS idx_history_snippet_id ON snippet_history(snippet_id);",
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 5,
+            description: "cleanup_redundant_fts_triggers",
+            sql: "DROP TRIGGER IF EXISTS snippets_ai; DROP TRIGGER IF EXISTS snippets_au;",
+            kind: MigrationKind::Up,
+        }
+    ];
+
     tauri::Builder::default()
         .setup(|app| {
-            // ── System Tray ──────────────────────────────────
             let show_item = MenuItemBuilder::with_id("show", "Show / Hide").build(app)?;
             let quit_item = MenuItemBuilder::with_id("quit", "Quit Snippet Box").build(app)?;
 
@@ -81,7 +156,7 @@ pub fn run() {
                 .build()?;
 
             TrayIconBuilder::new()
-                .icon(app.default_window_icon().unwrap().clone())
+                .icon(tauri::image::Image::from_bytes(include_bytes!("../icons/trayTemplate.png")).unwrap())
                 .menu(&menu)
                 .show_menu_on_left_click(false)
                 .tooltip("Snippet Box")
@@ -117,7 +192,6 @@ pub fn run() {
                 })
                 .build(app)?;
 
-            // ── Global Shortcut (Dynamic) ────────────
             #[cfg(desktop)]
             {
                 app.manage(AppShortcutState(Mutex::new(None)));
@@ -125,7 +199,6 @@ pub fn run() {
                 app.handle().plugin(
                     tauri_plugin_global_shortcut::Builder::new()
                         .with_handler(move |app, s, event| {
-                            // Check if it's our registered trigger
                             let state = app.state::<AppShortcutState>();
                             let current = state.0.lock().unwrap();
                             if Some(*s) == *current && event.state() == ShortcutState::Released {
@@ -149,17 +222,38 @@ pub fn run() {
                 )?;
             }
 
+            #[cfg(target_os = "macos")]
+            let _ = apply_vibrancy(
+                &app.get_webview_window("main").unwrap(),
+                NSVisualEffectMaterial::Sidebar,
+                None,
+                None
+            );
+
+            #[cfg(target_os = "windows")]
+            {
+                let window = app.get_webview_window("main").unwrap();
+                if let Err(_) = apply_mica(&window, None) {
+                    if let Err(_) = apply_acrylic(&window, Some((18, 18, 18, 125))) {
+                        let _ = apply_blur(&window, Some((18, 18, 18, 125)));
+                    }
+                }
+            }
+
             Ok(())
         })
-        // ── Hide to tray on close — also remove from Dock ────────
         .on_window_event(|window, event| {
             if let tauri::WindowEvent::CloseRequested { api, .. } = event {
                 api.prevent_close();
                 hide_window(window.app_handle());
             }
         })
+        .plugin(tauri_plugin_sql::Builder::default().add_migrations("sqlite:snippets.db", migrations).build())
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_os::init())
+        .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![show_app, hide_app, update_shortcut])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

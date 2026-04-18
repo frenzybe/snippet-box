@@ -1,0 +1,222 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-primary);
+}
+
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.metaSide {
+  width: 320px;
+  min-width: 320px;
+  padding: 24px;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.mainSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--bg-primary);
+}
+
+/* Tabs Bar */
+.tabsBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px 0;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.fileTab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: var(--bg-header);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t-duration) var(--t-ease);
+  max-width: 140px;
+}
+
+.fileTabActive {
+  background-color: var(--bg-primary);
+  color: var(--accent-color);
+  font-weight: 600;
+  padding-bottom: 9px;
+  margin-bottom: -1px;
+}
+
+.tabInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+/* Tag Manager */
+.tagSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tagInputWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-primary);
+  transition: border-color var(--t-duration);
+}
+
+.tagInputWrapper:focus-within {
+  border-color: var(--accent-color);
+}
+
+.tagInput {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  padding: 4px;
+}
+
+/* Actions Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.footerLeft {
+  display: flex;
+  gap: 12px;
+}
+
+.footerRight {
+  display: flex;
+  gap: 12px;
+}
+
+.filenameInput {
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.fileOptionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editorContainer {
+  flex: 1;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.editorContainer>div {
+  height: 100%;
+}
+
+.codeEditor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+@media (max-width: 850px) {
+  .formContainer {
+    height: 100%;
+    max-height: none;
+  }
+
+  .workspace {
+    flex-direction: column;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    flex: 1;
+  }
+
+  .metaSide {
+    width: 100%;
+    min-width: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-height: 40%;
+    overflow-y: auto;
+  }
+
+  .metaSide>*:nth-child(1),
+  .metaSide>*:nth-child(2) {
+    grid-column: span 2;
+  }
+
+  .fileOptionsGrid {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .mainSide {
+    flex: 1;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .tabInfo {
+    padding: 16px;
+  }
+}

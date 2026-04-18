@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  text-align: center;
+  height: 100%;
+}
+
+.container.compact {
+  padding: 24px 16px;
+  height: auto;
+}
+
+.iconBg {
+  width: 96px;
+  height: 96px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-primary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  color: var(--accent-color);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.compact .iconBg {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.container:hover .iconBg {
+  transform: translateY(-5px);
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+}
+
+.compact .title {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 0.9rem;
+  max-width: 280px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.compact .description {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.action {
+  margin-top: 24px;
+}
+
+.button {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+  filter: brightness(1.1);
+}
+
+.button:active {
+  transform: translateY(0);
+}
